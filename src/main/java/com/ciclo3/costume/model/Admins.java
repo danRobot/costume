@@ -29,23 +29,23 @@ public class Admins implements Serializable{
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer idAdmin;
+    private Integer id;
     private String name;    
     private String email;
     private String password;
-    
+
     /**
      * @return the idAdmin
      */
     public Integer getIdAdmin() {
-        return idAdmin;
+        return id;
     }
 
     /**
      * @param idAdmin the idAdmin to set
      */
     public void setIdAdmin(Integer idAdmin) {
-        this.idAdmin = idAdmin;
+        this.id = idAdmin;
     }
 
     /**

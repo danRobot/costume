@@ -5,11 +5,17 @@
  */
 package com.ciclo3.costume.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,6 +40,33 @@ public class Costume implements Serializable{
     private String brand;
     private Integer year;
     private String description;
+    
+    @ManyToOne
+    @JoinColumn(name="category")
+    @JsonIgnoreProperties("costumes")
+    private Category category;
+    
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy= "costume")
+    @JsonIgnoreProperties({"costume","client"})
+    private List<Message> messages;
+    
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "costume")
+    @JsonIgnoreProperties({"costume","messages"})
+    private List<Reservation> reservations;
+
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     /**
      * @return the name
@@ -90,4 +123,47 @@ public class Costume implements Serializable{
     public void setDescription(String description) {
         this.description = description;
     }
+
+    /**
+     * @return the category
+     */
+    public Category getCategory() {
+        return category;
+    }
+
+    /**
+     * @param category the category to set
+     */
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    /**
+     * @return the messages
+     */
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    /**
+     * @param messages the messages to set
+     */
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
+    /**
+     * @return the reservations
+     */
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    /**
+     * @param reservations the reservations to set
+     */
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
 }

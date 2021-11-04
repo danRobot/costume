@@ -5,11 +5,13 @@
  */
 package com.ciclo3.costume.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,23 +30,27 @@ import lombok.NoArgsConstructor;
 public class Score {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idScore;
+    private Integer id;
     @Column(nullable = false,length = 250)
     private String messageText;
     private Integer stars;
+    
+    @OneToOne
+    @JsonIgnoreProperties("score")
+    private Reservation reservation;
 
     /**
      * @return the idScore
      */
     public Integer getIdScore() {
-        return idScore;
+        return id;
     }
 
     /**
      * @param idScore the idScore to set
      */
     public void setIdScore(Integer idScore) {
-        this.idScore = idScore;
+        this.id = idScore;
     }
 
     /**
@@ -73,5 +79,19 @@ public class Score {
      */
     public void setStars(Integer stars) {
         this.stars = stars;
+    }
+
+    /**
+     * @return the reservation
+     */
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    /**
+     * @param reservation the reservation to set
+     */
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
     }
 }
