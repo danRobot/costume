@@ -21,19 +21,30 @@ import lombok.NoArgsConstructor;
  */
 
 @Entity
-@Table(name = "costume")
+@Table(name = "category")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Costume implements Serializable{
-    
+public class Category implements Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
-    private String brand;
-    private Integer year;
+    private Integer idCategory;
+    private String name;    
     private String description;
+
+    /**
+     * @return the idCategory
+     */
+    public Integer getIdCategory() {
+        return idCategory;
+    }
+
+    /**
+     * @param idCategory the idCategory to set
+     */
+    public void setIdCategory(Integer idCategory) {
+        this.idCategory = idCategory;
+    }
 
     /**
      * @return the name
@@ -47,34 +58,6 @@ public class Costume implements Serializable{
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * @return the brand
-     */
-    public String getBrand() {
-        return brand;
-    }
-
-    /**
-     * @param brand the brand to set
-     */
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    /**
-     * @return the year
-     */
-    public Integer getYear() {
-        return year;
-    }
-
-    /**
-     * @param year the year to set
-     */
-    public void setYear(Integer year) {
-        this.year = year;
     }
 
     /**

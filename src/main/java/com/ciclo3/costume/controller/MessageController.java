@@ -5,8 +5,8 @@
  */
 package com.ciclo3.costume.controller;
 
-import com.ciclo3.costume.service.CostumeService;
-import com.ciclo3.costume.model.Costume;
+import com.ciclo3.costume.service.MessageService;
+import com.ciclo3.costume.model.Message;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,41 +18,39 @@ import org.springframework.web.bind.annotation.*;
  *
  * @author danm
  */
-
 @RestController
-@RequestMapping("/api/Costume")
+@RequestMapping("/api/Message")
 @CrossOrigin
-public class CostumeController {
+public class MessageController {
     @Autowired
-    private CostumeService costumeService;
-    
+    private MessageService clientService;
     @GetMapping("/all")
-    public List<Costume> getAll(){
-        return costumeService.getAll();
+    public List<Message> getAll(){
+        return clientService.getAll();
     }
     @GetMapping("/{id}")
-    public Optional<Costume> getCostume(@PathVariable int id){
-        return costumeService.getCostume(id);
+    public Optional<Message> getCostume(@PathVariable int id){
+        return clientService.getMessage(id);
     }
     
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Costume save(@RequestBody Costume costume){
-        return costumeService.save(costume);
+    public Message save(@RequestBody Message costume){
+        return clientService.save(costume);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Costume updateCostume(@RequestBody Costume costume){
-        return costumeService.update(costume);
+    public Message updateCostume(@RequestBody Message costume){
+        return clientService.update(costume);
     }
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public boolean deteleCostume(@PathVariable int id){
-        return costumeService.deleteCostume(id);
+        return clientService.deleteMessage(id);
     }
     @DeleteMapping("/delete/all")
     @ResponseStatus(HttpStatus.CREATED)
     public boolean deteleAllCostumes(){
-        return costumeService.deleteAll();
+        return clientService.deleteAll();
     }
 }

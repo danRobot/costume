@@ -41,6 +41,14 @@ public class CostumeService {
             }
         }
     }
+    public boolean deleteAll(){
+        repositorio.deleteAll();
+        if (repositorio.count()==0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     
     public boolean deleteCostume(int id) {
         Optional<Costume> unDisfaz = getCostume(id);
