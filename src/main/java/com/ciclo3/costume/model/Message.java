@@ -31,7 +31,7 @@ import lombok.NoArgsConstructor;
 public class Message implements Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idMessage;
     private String messageText;
     @ManyToOne
     @JoinColumn(name = "costume")
@@ -47,14 +47,14 @@ public class Message implements Serializable{
      * @return the idMessage
      */
     public Integer getIdMessage() {
-        return id;
+        return idMessage;
     }
 
     /**
      * @param idMessage the idMessage to set
      */
     public void setIdMessage(Integer idMessage) {
-        this.id = idMessage;
+        this.idMessage = idMessage;
     }
 
     /**

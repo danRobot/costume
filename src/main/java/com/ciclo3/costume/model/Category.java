@@ -41,17 +41,17 @@ public class Category implements Serializable{
     private List<Costume> costumes;
 
     /**
-     * @return the idCategory
+     * @return the Id
      */
-    public Integer getIdCategory() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param idCategory the idCategory to set
      */
-    public void setIdCategory(Integer idCategory) {
-        this.id = idCategory;
+    public void setIdCategory(Integer id) {
+        this.id = id;
     }
 
     /**

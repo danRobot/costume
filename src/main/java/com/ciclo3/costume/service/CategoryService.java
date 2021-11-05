@@ -30,10 +30,10 @@ public class CategoryService {
     }
      
     public Category save(Category client) {
-        if (client.getIdCategory()== null) {
+        if (client.getId()== null) {
             return repositorio.save(client);
         } else {
-            Optional<Category> unDisfraz = getCategory(client.getIdCategory());
+            Optional<Category> unDisfraz = getCategory(client.getId());
 
             if (unDisfraz.isEmpty()) {
                 return repositorio.save(client);
@@ -62,23 +62,23 @@ public class CategoryService {
         }
     }
     
-    public Category update(Category client) {
-        if (client.getIdCategory()!= null) {
-            Optional<Category> e = getCategory(client.getIdCategory());
+    public Category update(Category category) {
+        if (category.getId()!= null) {
+            Optional<Category> e = getCategory(category.getId());
             if (!e.isEmpty()) {
-                if (client.getName() != null) {
-                    e.get().setName(client.getName());
+                if (category.getName() != null) {
+                    e.get().setName(category.getName());
                 }
-                if (client.getDescription()!= null) {
-                    e.get().setDescription(client.getDescription());
+                if (category.getDescription()!= null) {
+                    e.get().setDescription(category.getDescription());
                 }
                 repositorio.save(e.get());
                 return e.get();
             } else {
-                return client;
+                return category;
             }
         } else {
-            return client;
+            return category;
         }
     }
 }

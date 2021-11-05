@@ -32,11 +32,11 @@ import lombok.NoArgsConstructor;
 public class Client implements Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
-    private String name;    
+    private Integer idClient;
     private String email;
-    private Integer age;
     private String password;
+    private String name;
+    private Integer age;
     
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy="client")
     @JsonIgnoreProperties({"client"})
@@ -50,14 +50,14 @@ public class Client implements Serializable{
      * @return the idClient
      */
     public Integer getIdClient() {
-        return id;
+        return idClient;
     }
 
     /**
      * @param idClient the idClient to set
      */
     public void setIdClient(Integer idClient) {
-        this.id = idClient;
+        this.idClient = idClient;
     }
 
     /**
