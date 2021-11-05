@@ -43,12 +43,12 @@ public class ReservationController {
     public Reservation updateCostume(@RequestBody Reservation costume){
         return clientService.update(costume);
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public boolean deteleCostume(@PathVariable int id){
         return clientService.deleteReservation(id);
     }
-    @DeleteMapping("/delete/all")
+    @DeleteMapping("/all")
     @ResponseStatus(HttpStatus.CREATED)
     public boolean deteleAllCostumes(){
         return clientService.deleteAll();

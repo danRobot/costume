@@ -43,12 +43,12 @@ public class ScoreController {
     public Score updateCostume(@RequestBody Score costume){
         return scoreService.update(costume);
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public boolean deteleCostume(@PathVariable int id){
         return scoreService.deleteScore(id);
     }
-    @DeleteMapping("/delete/all")
+    @DeleteMapping("/all")
     @ResponseStatus(HttpStatus.CREATED)
     public boolean deteleAllCostumes(){
         return scoreService.deleteAll();

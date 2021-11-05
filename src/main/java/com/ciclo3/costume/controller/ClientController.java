@@ -43,12 +43,12 @@ public class ClientController {
     public Client updateCostume(@RequestBody Client costume){
         return clientService.update(costume);
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public boolean deteleCostume(@PathVariable int id){
         return clientService.deleteClient(id);
     }
-    @DeleteMapping("/delete/all")
+    @DeleteMapping("/all")
     @ResponseStatus(HttpStatus.CREATED)
     public boolean deteleAllCostumes(){
         return clientService.deleteAll();

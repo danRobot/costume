@@ -45,12 +45,12 @@ public class CostumeController {
     public Costume updateCostume(@RequestBody Costume costume){
         return costumeService.update(costume);
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public boolean deteleCostume(@PathVariable int id){
         return costumeService.deleteCostume(id);
     }
-    @DeleteMapping("/delete/all")
+    @DeleteMapping("/all")
     @ResponseStatus(HttpStatus.CREATED)
     public boolean deteleAllCostumes(){
         return costumeService.deleteAll();
