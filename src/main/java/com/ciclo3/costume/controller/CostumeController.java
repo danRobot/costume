@@ -46,12 +46,12 @@ public class CostumeController {
         return costumeService.update(costume);
     }
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean deteleCostume(@PathVariable int id){
         return costumeService.deleteCostume(id);
     }
     @DeleteMapping("/all")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean deteleAllCostumes(){
         return costumeService.deleteAll();
     }

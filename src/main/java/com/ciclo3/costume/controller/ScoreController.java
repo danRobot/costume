@@ -44,12 +44,12 @@ public class ScoreController {
         return scoreService.update(costume);
     }
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean deteleCostume(@PathVariable int id){
         return scoreService.deleteScore(id);
     }
     @DeleteMapping("/all")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean deteleAllCostumes(){
         return scoreService.deleteAll();
     }

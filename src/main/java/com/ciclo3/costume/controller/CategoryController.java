@@ -44,12 +44,12 @@ public class CategoryController {
         return clientService.update(costume);
     }
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean deteleCostume(@PathVariable int id){
         return clientService.deleteCategory(id);
     }
     @DeleteMapping("/all")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean deteleAllCostumes(){
         return clientService.deleteAll();
     }
