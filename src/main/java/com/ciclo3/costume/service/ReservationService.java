@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -6,8 +6,15 @@
 package com.ciclo3.costume.service;
 
 
+import com.ciclo3.costume.model.Client;
+import com.ciclo3.costume.model.CountClient;
+import com.ciclo3.costume.model.StatusAmount;
 import com.ciclo3.costume.repository.ReservationRepository;
 import com.ciclo3.costume.model.Reservation;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -87,5 +94,38 @@ public class ReservationService {
         } else {
             return reservation;
         }
+    }
+    
+    public List<Reservation> getReservationsPeriod(String dateA, String dateB){
+        SimpleDateFormat parser=new SimpleDateFormat("yyyy-MM-dd");
+        Date a= new Date();
+        Date b=new Date();
+        try {
+            a = parser.parse(dateA);
+            b = parser.parse(dateB);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(a.before(b)){
+            return repositorio.findAllByStartDateAfterAndStartDateBefore(a,b);
+        }else{
+            return new ArrayList<>();
+        }
+
+    }
+    
+    public StatusAmount getReservationsStatusReport(){
+        List<Reservation>completed=repositorio.findAllByStatus("completed");
+        List<Reservation>cancelled=repositorio.findAllByStatus("cancelled");
+        return new StatusAmount(completed.size(),cancelled.size());
+
+    }
+    public  List<CountClient> getTopClients(){
+        List<CountClient>res=new ArrayList<>();
+        List<Object[]>report=repositorio.countTotalReservationsByClient();
+        for(int i=0;i<report.size();i++){
+            res.add(new CountClient((Long)report.get(i)[1],(Client) report.get(i)[0]));
+        }
+        return res;
     }
 }

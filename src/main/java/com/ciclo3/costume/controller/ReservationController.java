@@ -5,8 +5,10 @@
  */
 package com.ciclo3.costume.controller;
 
+import com.ciclo3.costume.model.CountClient;
 import com.ciclo3.costume.service.ReservationService;
 import com.ciclo3.costume.model.Reservation;
+import com.ciclo3.costume.model.StatusAmount;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,34 +25,50 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class ReservationController {
     @Autowired
-    private ReservationService clientService;
+    private ReservationService reservationService;
     @GetMapping("/all")
     public List<Reservation> getAll(){
-        return clientService.getAll();
+        return reservationService.getAll();
     }
     @GetMapping("/{id}")
     public Optional<Reservation> getCostume(@PathVariable int id){
-        return clientService.getReservation(id);
+        return reservationService.getReservation(id);
     }
     
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation save(@RequestBody Reservation costume){
-        return clientService.save(costume);
+        return reservationService.save(costume);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation updateCostume(@RequestBody Reservation costume){
-        return clientService.update(costume);
+        return reservationService.update(costume);
     }
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean deteleCostume(@PathVariable int id){
-        return clientService.deleteReservation(id);
+        return reservationService.deleteReservation(id);
     }
     @DeleteMapping("/all")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean deteleAllCostumes(){
-        return clientService.deleteAll();
+        return reservationService.deleteAll();
     }
+    
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
+        return reservationService.getReservationsPeriod(dateOne,dateTwo);
+    }
+    
+    @GetMapping("/report-status")
+    public StatusAmount getReservationsStatusReport(){
+        return reservationService.getReservationsStatusReport();
+    }
+    
+    @GetMapping("/report-clients")
+    public List<CountClient> getReservationsReportClient(){
+        return reservationService.getTopClients();
+    }
+    
 }
